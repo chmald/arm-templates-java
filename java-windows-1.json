@@ -43,17 +43,12 @@
 					"IsManualIntegration": true,
 					"siteConfig": {
 						"appSettings": [],
-						"metadata": [{
-							"name": "CURRENT_STACK",
-							"value": "java"
-						}],
 						"phpVersion": "OFF",
 						"javaVersion": "1.8",
 						"javaContainer": "TOMCAT",
 						"javaContainerVersion": "8.5"
 
 					}
-
 
 				}
 			}]
