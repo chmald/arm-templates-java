@@ -1,66 +1,60 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "variables": {
-        "hostingPlanName":"[replace(resourceGroup().name,'.','')]",
-        "siteName": "[concat(toLower(variables('hostingPlanName')), uniqueString(resourceGroup().id))]",
-        "sku":"S1",
-        "repoURL":"https://github.com/sureddy1/L200_S1.git",
-        "branch":"master",
-        "siteConfig": {
-        }
-    },
-    "resources": [
-      {
-        "apiVersion": "2020-06-01",
-        "name": "[variables('hostingPlanName')]",
-        "type": "Microsoft.Web/serverfarms",
-        "location": "[resourceGroup().location]",
-        "sku": {
-          "name": "[variables('sku')]"
-        }
-      },
-      {
-        "apiVersion": "2020-06-01",
-        "name": "[variables('siteName')]",
-        "type": "Microsoft.Web/sites",
-        "location": "[resourceGroup().location]",
-        "dependsOn": [
-          "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-        ],
-        "properties": {
-          "siteConfig": "[variables('siteConfig')]",
-          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-        },
-        "resources": [
-          {
-            "apiVersion": "2020-06-01",
-            "name": "web",
-            "type": "sourcecontrols",
-            "dependsOn": [
-              "[resourceId('Microsoft.Web/Sites', variables('siteName'))]"
-            ],
-            "properties": {
-              "repoUrl": "[variables('repoURL')]",
-              "branch": "[variables('branch')]",
-              "IsManualIntegration": true
-			  
-			   "siteConfig": {
-                    "appSettings": [
-                        {
-                            "name": "CATALINA_OPTS",
-                            "value": "-Xms16384m -Xmx16384m"
-                        }
-                    ]
-                }            
-			  
-            }
-			  "use32BitWorkerProcess": false,
-			  "javaVersion": "1.8",
-			  "javaContainer": "TOMCAT",
-			  "javaContainerVersion": "8.5" 
-          }
-        ]
-      }
-    ]
-  }
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"variables": {
+		"hostingPlanName": "[replace(resourceGroup().name,'.','')]",
+		"siteName": "[concat(toLower(variables('hostingPlanName')), uniqueString(resourceGroup().id))]",
+		"sku": "S1",
+		"repoURL": "https://github.com/sureddy1/L200_S1.git",
+		"branch": "master",
+		"siteConfig": {}
+	},
+	"resources": [{
+			"apiVersion": "2020-06-01",
+			"name": "[variables('hostingPlanName')]",
+			"type": "Microsoft.Web/serverfarms",
+			"location": "[resourceGroup().location]",
+			"sku": {
+				"name": "[variables('sku')]"
+			}
+		},
+		{
+			"apiVersion": "2020-06-01",
+			"name": "[variables('siteName')]",
+			"type": "Microsoft.Web/sites",
+			"location": "[resourceGroup().location]",
+			"dependsOn": [
+				"[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+			],
+			"properties": {
+				"siteConfig": "[variables('siteConfig')]",
+				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+			},
+			"resources": [{
+				"apiVersion": "2020-06-01",
+				"name": "web",
+				"type": "sourcecontrols",
+				"dependsOn": [
+					"[resourceId('Microsoft.Web/Sites', variables('siteName'))]"
+				],
+				"properties": {
+					"repoUrl": "[variables('repoURL')]",
+					"branch": "[variables('branch')]",
+					"IsManualIntegration": true,
+
+					"siteConfig": {
+						"appSettings": [{
+							"name": "CATALINA_OPTS",
+							"value": "-Xms16384m -Xmx16384m"
+						}]
+					}
+
+				},
+				"use32BitWorkerProcess": false,
+				"javaVersion": "1.8",
+				"javaContainer": "TOMCAT",
+				"javaContainerVersion": "8.5"
+			}]
+		}
+	]
+}
