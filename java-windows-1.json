@@ -8,17 +8,13 @@
         "repoURL":"https://github.com/sureddy1/L200_S1.git",
         "branch":"master",
         "siteConfig": {
-        
-		  "use32BitWorkerProcess": false,
-		  "javaVersion": "1.8",
-		  "javaContainer": "TOMCAT",
-		  "javaContainerVersion": "8.5"  
+       
 		  "appSettings": [
                         {
                             "name": "CATALINA_OPTS",
                             "value": "-Xms16384m -Xmx16384m"
                         }
-		              
+		    ]          
         }
     },
     "resources": [
@@ -55,6 +51,10 @@
               "repoUrl": "[variables('repoURL')]",
               "branch": "[variables('branch')]",
               "IsManualIntegration": true
+	      "use32BitWorkerProcess": false,
+	      "javaVersion": "1.8",
+	      "javaContainer": "TOMCAT",
+	       "javaContainerVersion": "8.5" 
             }
           }
         ]
