@@ -28,7 +28,6 @@
           "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
         ],
         "properties": {
-          "siteConfig": "[variables('siteConfig')]",
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
         },
         "resources": [
