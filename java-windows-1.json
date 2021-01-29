@@ -5,8 +5,8 @@
         "hostingPlanName":"[replace(resourceGroup().name,'.','')]",
         "siteName": "[concat(toLower(variables('hostingPlanName')), uniqueString(resourceGroup().id))]",
         "sku":"S1",
-        "repoURL":"https://github.com/sureddy1/L200_S1.git",
-        "branch":"master"
+        "repoURL":"https://github.com/azureossd/java-windows-1.git",
+        "branch":"main"
       
     },
     "resources": [
