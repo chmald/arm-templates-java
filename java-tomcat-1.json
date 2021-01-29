@@ -6,8 +6,7 @@
         "siteName": "[concat(toLower(variables('hostingPlanName')), uniqueString(resourceGroup().id))]",
         "sku":"S1",
         "repoURL":"https://github.com/azureossd/java-tomcat-1.git",
-        "branch":"master",
-      
+        "branch":"main"
     },
     "resources": [
       {
