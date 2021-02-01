@@ -43,7 +43,7 @@
               "repoUrl": "[variables('repoURL')]",
               "branch": "[variables('branch')]",
               "IsManualIntegration": true,
-			  "siteConfig": {},
+			  "siteConfig": {
                     "appSettings": [],
                     "phpVersion": "OFF",
                     "javaVersion": "11",
@@ -51,7 +51,7 @@
                     "javaContainerVersion": "SE"
                     
                    
-			  
+		}	  
             }
 		}]		   
       }
