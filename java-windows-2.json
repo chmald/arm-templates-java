@@ -6,7 +6,7 @@
         "siteName": "[concat(toLower(variables('hostingPlanName')), uniqueString(resourceGroup().id))]",
         "sku":"S1",
         "repoURL":"https://github.com/azureossd/java-windows-2.git",
-        "branch":"master",
+        "branch":"master"
       
     },
     "resources": [
