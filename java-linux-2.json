@@ -8,7 +8,7 @@
         "repoURL":"https://github.com/azureossd/java-linux-2.git",
         "branch":"master",
         "siteConfig": {
-          "linuxFxVersion": "JAVA|11"
+          "linuxFxVersion": "JAVA|11-java11"
         }
     },
     "resources": [
