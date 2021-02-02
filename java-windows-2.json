@@ -1,61 +1,65 @@
 {
-	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-	"contentVersion": "1.0.0.0",
-	"variables": {
-		"hostingPlanName": "[replace(resourceGroup().name,'.','')]",
-		"siteName": "[concat(toLower(variables('hostingPlanName')), uniqueString(resourceGroup().id))]",
-		"sku": "S1",
-		"repoURL": "https://github.com/azureossd/java-windows-2.git",
-		"branch": "main"
-
-	},
-	"resources": [{
-			"apiVersion": "2020-06-01",
-			"name": "[variables('hostingPlanName')]",
-			"type": "Microsoft.Web/serverfarms",
-			"location": "[resourceGroup().location]",
-			"sku": {
-				"name": "[variables('sku')]"
-			}
-		},
-		{
-			"apiVersion": "2020-06-01",
-			"name": "[variables('siteName')]",
-			"type": "Microsoft.Web/sites",
-			"location": "[resourceGroup().location]",
-			"dependsOn": [
-				"[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-			],
-			"properties": {
-				"siteConfig": "[variables('siteConfig')]",
-				"serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-			},
-			"resources": [{
-				"apiVersion": "2020-06-01",
-				"name": "web",
-				"type": "sourcecontrols",
-				"dependsOn": [
-					"[resourceId('Microsoft.Web/Sites', variables('siteName'))]"
-				],
-				"properties": {
-					"repoUrl": "[variables('repoURL')]",
-					"branch": "[variables('branch')]",
-					"IsManualIntegration": true,
-					"siteConfig": {
-						"appSettings": [],
-						"metadata": [{
-							"name": "CURRENT_STACK",
-							"value": "java"
-						}],
-						"phpVersion": "OFF",
-						"javaVersion": "11",
-						"javaContainer": "JAVA",
-						"javaContainerVersion": "SE",
-						"alwaysOn": "true"
-					}
-
-				}
-			}]
-		}
-	]
-}
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "hostingPlanName":"[replace(resourceGroup().name,'.','')]",
+        "siteName": "[concat(toLower(variables('hostingPlanName')), uniqueString(resourceGroup().id))]",
+        "sku":"S1",
+        "repoURL":"https://github.com/azureossd/java-windows-2.git",
+        "branch":"main"
+      
+    },
+    "resources": [
+      {
+        "apiVersion": "2018-11-01",
+        "name": "[variables('hostingPlanName')]",
+        "type": "Microsoft.Web/serverfarms",
+        "location": "[resourceGroup().location]",
+        "sku": {
+          "name": "[variables('sku')]"
+        }
+      },
+      {
+        "apiVersion": "2018-11-01",
+        "name": "[variables('siteName')]",
+        "type": "Microsoft.Web/sites",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+        ],
+        "properties": {
+          "siteConfig": "[variables('siteConfig')]",
+          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+        },
+        "resources": [
+          {
+            "apiVersion": "2018-11-01",
+            "name": "web",
+            "type": "sourcecontrols",
+            "dependsOn": [
+              "[resourceId('Microsoft.Web/Sites', variables('siteName'))]"
+            ],
+            "properties": {
+              "repoUrl": "[variables('repoURL')]",
+              "branch": "[variables('branch')]",
+              "IsManualIntegration": true,
+			  "siteConfig": {
+                    "appSettings": [],
+                    "metadata": [
+                        {
+                            "name": "CURRENT_STACK",
+                            "value": "java"
+                        }
+                    ],
+                    "phpVersion": "OFF",
+                    "javaVersion": "11",
+                    "javaContainer": "JAVA",
+                    "javaContainerVersion": "SE",
+                    "alwaysOn": "true"
+                },     
+			  
+            }
+		}]		   
+      }
+    ]
+  }
