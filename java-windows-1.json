@@ -7,7 +7,6 @@
         "sku":"S1",
         "repoURL":"https://github.com/azureossd/java-windows-1.git",
         "branch":"main"
-      
     },
     "resources": [
       {
@@ -25,15 +24,16 @@
         "type": "Microsoft.Web/sites",
         "location": "[resourceGroup().location]",
         "properties": {
+          "siteConfig": {
+            "appSettings": [],
+            "phpVersion": "OFF",
+            "javaVersion": "17",
+            "javaContainer": "TOMCAT",
+            "javaContainerVersion": "10.0",
+            "alwaysOn":"true",
+            "scmType": "ExternalGit"
+          },
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-        },
-        "siteConfig": {
-          "appSettings": [],
-          "phpVersion": "OFF",
-          "javaVersion": "17",
-          "javaContainer": "TOMCAT",
-          "javaContainerVersion": "10",
-          "scmType": "ExternalGit"
         },
         "dependsOn": [
           "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
