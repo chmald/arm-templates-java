@@ -25,12 +25,10 @@
         "location": "[resourceGroup().location]",
         "properties": {
           "siteConfig": {
-            "appSettings":[],
-            "phpVersion":"OFF",
-            "javaVersion":"17",
-            "javaContainer":"JAVA",
-            "javaContainerVersion":"SE",
-            "alwaysOn":"true",
+            "alwaysOn": "true",
+            "javaVersion": "11",
+            "javaContainer": "JAVA",
+            "javaContainerVersion": "SE",
             "scmType": "ExternalGit"
           },
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"

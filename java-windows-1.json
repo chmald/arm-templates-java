@@ -25,12 +25,10 @@
         "location": "[resourceGroup().location]",
         "properties": {
           "siteConfig": {
-            "appSettings": [],
-            "phpVersion": "OFF",
+            "alwaysOn": true,
             "javaVersion": "17",
             "javaContainer": "TOMCAT",
             "javaContainerVersion": "10.0",
-            "alwaysOn":"true",
             "scmType": "ExternalGit"
           },
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
