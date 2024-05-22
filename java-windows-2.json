@@ -8,20 +8,19 @@
         "repoURL":"https://github.com/azureossd/java-windows-2.git",
         "branch":"main",
         "siteConfig": {
-         "appSettings":[
-                        
-                     ],
-                     "metadata":[
-                        {
-                           "name":"CURRENT_STACK",
-                           "value":"java"
-                        }
-                     ],
-                     "phpVersion":"OFF",
-                     "javaVersion":"17",
-                     "javaContainer":"JAVA",
-                     "javaContainerVersion":"SE",
-                     "alwaysOn":"true"
+          "appSettings":[],
+          "metadata":[
+            {
+                "name":"CURRENT_STACK",
+                "value":"java"
+            }
+          ],
+          "phpVersion":"OFF",
+          "javaVersion":"17",
+          "javaContainer":"JAVA",
+          "javaContainerVersion":"SE",
+          "alwaysOn":"true",
+          "scmType": "ExternalGit"
         }
     },
     "resources": [
@@ -39,27 +38,25 @@
         "name": "[variables('siteName')]",
         "type": "Microsoft.Web/sites",
         "location": "[resourceGroup().location]",
-        "dependsOn": [
-          "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-        ],
         "properties": {
           "siteConfig": "[variables('siteConfig')]",
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
         },
-        "resources": [
-          {
-            "apiVersion": "2023-01-01",
-            "name": "web",
-            "type": "Microsoft.Web/sites/sourcecontrols",
-            "dependsOn": [
-              "[resourceId('Microsoft.Web/sites', variables('siteName'))]"
-            ],
-            "properties": {
-              "repoUrl": "[variables('repoURL')]",
-              "branch": "[variables('branch')]",
-              "isManualIntegration": true
-            }
-          }
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+        ]
+      },
+      {
+        "apiVersion": "2023-01-01",
+        "name": "web",
+        "type": "Microsoft.Web/sites/sourcecontrols",
+        "properties": {
+          "repoUrl": "[variables('repoURL')]",
+          "branch": "[variables('branch')]",
+          "isManualIntegration": true
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/sites', variables('siteName'))]"
         ]
       }
     ]

@@ -24,35 +24,33 @@
         "name": "[variables('siteName')]",
         "type": "Microsoft.Web/sites",
         "location": "[resourceGroup().location]",
-        "dependsOn": [
-          "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
-        ],
         "properties": {
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
         },
-        "resources": [
-          {
-            "apiVersion": "2023-01-01",
-            "name": "web",
-            "type": "Microsoft.Web/sites/sourcecontrols",
-            "dependsOn": [
-              "[resourceId('Microsoft.Web/sites', variables('siteName'))]"
-            ],
-            "properties": {
-              "repoUrl": "[variables('repoURL')]",
-              "branch": "[variables('branch')]",
-              "isManualIntegration": true,
-			  "siteConfig": {
-                    "appSettings": [],
-                    "phpVersion": "OFF",
-                    "javaVersion": "17",
-                    "javaContainer": "TOMCAT",
-                    "javaContainerVersion": "10"
-                    
-                }       
-			  
-            }
-		}]		   
+        "siteConfig": {
+          "appSettings": [],
+          "phpVersion": "OFF",
+          "javaVersion": "17",
+          "javaContainer": "TOMCAT",
+          "javaContainerVersion": "10",
+          "scmType": "ExternalGit"
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+        ]
+      },
+      {
+        "apiVersion": "2023-01-01",
+        "name": "web",
+        "type": "Microsoft.Web/sites/sourcecontrols",
+        "properties": {
+          "repoUrl": "[variables('repoURL')]",
+          "branch": "[variables('branch')]",
+          "isManualIntegration": true   
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/sites', variables('siteName'))]"
+        ]
       }
     ]
   }
