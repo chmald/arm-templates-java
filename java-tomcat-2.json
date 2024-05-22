@@ -27,6 +27,11 @@
           "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
         ],
         "properties": {
+          "siteConfig": {
+            "javaVersion": "17",
+            "javaContainer": "TOMCAT",
+            "javaContainerVersion": "10.0"  
+          },
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
         },
         "resources": [
@@ -40,18 +45,10 @@
             "properties": {
               "repoUrl": "[variables('repoURL')]",
               "branch": "[variables('branch')]",
-              "IsManualIntegration": true,
-			  "siteConfig": {
-                    "appSettings": [],
-                    "phpVersion": "OFF",
-                    "javaVersion": "17",
-                    "javaContainer": "TOMCAT",
-                    "javaContainerVersion": "10"
-                    
-                }       
-			  
+              "IsManualIntegration": true     
             }
-		}]		   
+          }
+        ]
       }
     ]
   }
