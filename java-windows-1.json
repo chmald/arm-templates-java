@@ -45,9 +45,9 @@
 			  "siteConfig": {
                     "appSettings": [],
                     "phpVersion": "OFF",
-                    "javaVersion": "1.8",
+                    "javaVersion": "17",
                     "javaContainer": "TOMCAT",
-                    "javaContainerVersion": "8.5"
+                    "javaContainerVersion": "10"
                     
                 }       
 			  

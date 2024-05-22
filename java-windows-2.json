@@ -18,7 +18,7 @@
                         }
                      ],
                      "phpVersion":"OFF",
-                     "javaVersion":"11",
+                     "javaVersion":"17",
                      "javaContainer":"JAVA",
                      "javaContainerVersion":"SE",
                      "alwaysOn":"true"
